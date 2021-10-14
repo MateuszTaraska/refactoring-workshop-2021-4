@@ -57,7 +57,7 @@ private:
     void handlePauseInd(std::unique_ptr<Event>);
 
     bool isSegmentAtPosition(int x, int y) const;
-    Segment calculateNewHead() const;
+    Segment calculateNewHead() const; // to remove in future
     void updateSegmentsIfSuccessfullMove(Segment const& newHead);
     void addHeadSegment(Segment const& newHead);
     void removeTailSegmentIfNotScored(Segment const& newHead);
@@ -71,5 +71,24 @@ private:
 
     bool m_paused;
 };
+
+class SnakeSegment 
+{
+    public:
+        struct Segment1
+    {
+        int x;
+        int y;
+    };
+
+    std::list<Segment1> m_segments;
+    Direction m_currentDirection;
+
+    private:
+    Segment1 calculateNewHead1() const;
+
+    
+};
+
 
 } // namespace Snake

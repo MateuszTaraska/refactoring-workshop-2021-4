@@ -62,6 +62,7 @@ Controller::Controller(IPort& p_displayPort, IPort& p_foodPort, IPort& p_scorePo
     }
 }
 
+
 bool Controller::isSegmentAtPosition(int x, int y) const
 {
     return m_segments.end() !=  std::find_if(m_segments.cbegin(), m_segments.cend(),
@@ -119,7 +120,19 @@ bool perpendicular(Direction dir1, Direction dir2)
 }
 } // namespace
 
-Controller::Segment Controller::calculateNewHead() const
+SnakeSegment::Segment1 SnakeSegment::calculateNewHead1() const
+{
+    Segment1 const& currentHead = m_segments.front();
+
+    Segment1 newHead;
+    newHead.x = currentHead.x + (isHorizontal(m_currentDirection) ? isPositive(m_currentDirection) ? 1 : -1 : 0);
+    newHead.y = currentHead.y + (isVertical(m_currentDirection) ? isPositive(m_currentDirection) ? 1 : -1 : 0);
+
+    return newHead;
+}
+
+
+Controller::Segment Controller::calculateNewHead() const // to remove in future
 {
     Segment const& currentHead = m_segments.front();
 
